@@ -12,10 +12,8 @@ import {
   TextField,
 } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
 
-export default function SignUpPage() {
-  const router=useRouter()
+export default function SignInPage() {
   const { 
         register,
         handleSubmit,
@@ -28,41 +26,26 @@ export default function SignUpPage() {
     // const image=e.target.image.value
     // const email=e.target.email.value
     // const password=e.target.password.value
-    const { name,email,image,password } = formData;
-    console.log({name,password,email,image})
-    const {data,error}=await authClient.signUp.email({
-      name,password,email,image
+    const {email,password } = formData;
+    console.log({password,email})
+    const {data,error}=await authClient.signIn.email({
+      password,email,callbackURL:'/'
     })
     console.log( {data,error})
-    if(!error){
-      router.push('/')
-    }
+    
   };
+  const handleGoogleSignIn=async()=>{
+  await authClient.signIn.social({
+    provider: "google"
+})
+    }
 
   return (
     <Card className="border mx-auto w-125 py-10 mt-5">
-      <h1 className="text-center text-2xl font-bold">Sign Up</h1>
+      <h1 className="text-center text-2xl font-bold">Sign In</h1>
 
       <form className="flex w-96 mx-auto flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <TextField isRequired name="name" type="text">
-          <Label>Name</Label>
-          <Input 
-          type="text"
-          className="input" 
-          { ...register("name",{required:"Email is Required"})} 
-          placeholder="Enter your name" />
-          <FieldError />
-           
-        </TextField>
-
-        <TextField isRequired
-         type="text">
-          <Label>Image URL</Label>
-          <Input 
-           { ...register("image",{required:"Image is Required"})} 
-          placeholder="Image URL" />
-          <FieldError />
-        </TextField>
+ 
 
         <TextField
           
@@ -101,11 +84,11 @@ export default function SignUpPage() {
             Reset
           </Button>
         </div>
-        
+        <p>Or</p>
+       
       </form>
-    
-   
-
+       <button onClick={handleGoogleSignIn} className="btn border rounded-2xl active:scale-90  bg-accent">Google Signin</button>
+         
     </Card>
   );
 }

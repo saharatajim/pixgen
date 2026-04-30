@@ -2,24 +2,29 @@ import { Separator } from '@heroui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import 'animate.css';
 
 const PhotoCard = ({photo}) => {
+
+
     return (
-        <div>
-             <div className="p-5 max-w-sm bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300
+        <div className='hover:animate-pulse '>
+             <div className="p-5  max-w-sm bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300
              ">
-     <div className='relative aspect-square '>
+     <div className='relative  '>
          <Image 
-        fill
-        className='object-cover rounded-2xl'
+        height={500}
+        width={500}
+        className='h-70 object-cover rounded-2xl'
         src={photo.imageUrl}
         alt={photo.title}
         sizes="(max-width:768px)100vw,(max-width:1200px)50vw,30vw,"
       />
+       <p className="font-bold text-white mt-1 absolute bg-red-300 w-25 text-center rounded-full p-1  transform translate-x-1/2 translate-y-1/2"> {photo.category}</p>
      </div>
       <div className="p-5">
-        <h3 className="text-lg font-semibold text-gray-800">{photo.title}</h3>
-        <p className="text-sm text-gray-500 mt-1">Category: {photo.category}</p>
+        <h3 className="text-lg mt-10 font-semibold text-gray-800">{photo.title}</h3>
+       
 
         <div className="flex justify-between items-center mt-4 text-sm text-gray-600">
           <span className="flex items-center gap-1">
