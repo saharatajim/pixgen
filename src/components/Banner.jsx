@@ -14,7 +14,7 @@ const Banner = () => {
           animate__flash
           animate__slower
           animate__infinite	infinite">
-            Generate high-quality images from simple text prompts.
+            Hello!Generate high-quality images from simple text prompts.
           </p>
 
           <div className="flex gap-4">
