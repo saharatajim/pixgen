@@ -1,3 +1,6 @@
+import dns from "node:dns"
+dns.setServers(["8.8.8.8","8.8.4.4"])
+
 import Category from "@/components/category";
 import PhotoCard from "@/components/PhotoCard";
 import { getAllImage } from "@/lib/GetAllPic";

@@ -1,4 +1,8 @@
+
 "use client"
+import dns from "node:dns"
+dns.setServers(["8.8.8.8","8.8.4.4"])
+
 import { UpdateUser } from '@/components/UpdateUserModal';
 import { authClient } from '@/lib/auth-client';
 import { Avatar, Card } from '@heroui/react';
